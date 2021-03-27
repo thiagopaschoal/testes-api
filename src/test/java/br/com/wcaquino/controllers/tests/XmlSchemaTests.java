@@ -10,7 +10,7 @@ import org.xml.sax.SAXException;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
-public class XMLSchemaTests {
+public class XmlSchemaTests {
 
     @BeforeAll
     public static void setUpClass() {

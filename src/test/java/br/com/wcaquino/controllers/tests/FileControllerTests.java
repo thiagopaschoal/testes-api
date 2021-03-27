@@ -52,7 +52,6 @@ public class FileControllerTests {
                 .get("/download")
                 .then()
                 .assertThat()
-                .log().all()
                 .statusCode(200)
                 .extract()
                 .asByteArray();
