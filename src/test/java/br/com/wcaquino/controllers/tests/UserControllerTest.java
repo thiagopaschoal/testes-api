@@ -1,4 +1,4 @@
-package br.com.wcaquino.controllers;
+package br.com.wcaquino.controllers.tests;
 
 import br.com.wcaquino.controllers.builders.UserBuilder;
 import br.com.wcaquino.controllers.models.User;
@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class UserControllerJsonTest {
+public class UserControllerTest {
 
     @BeforeAll
     public static void setUpClass() {

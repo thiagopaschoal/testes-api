@@ -1,4 +1,4 @@
-package br.com.wcaquino.controllers;
+package br.com.wcaquino.controllers.tests;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,4 +1,4 @@
-package br.com.wcaquino.controllers;
+package br.com.wcaquino.controllers.tests;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
