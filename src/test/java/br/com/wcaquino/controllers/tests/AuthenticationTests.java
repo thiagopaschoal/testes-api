@@ -1,63 +1,58 @@
 package br.com.wcaquino.controllers.tests;
 
 import br.com.wcaquino.controllers.utils.JWTUtils;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.specification.FilterableRequestSpecification;
+import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
 public class AuthenticationTests {
 
-    @BeforeAll
-    public static void setUpClass() {
-        baseURI = "http://restapi.wcaquino.me";
-    }
+    @BeforeEach
+    public void setUp() {
 
-    @Test
-    @DisplayName("Deve retornar erro quando o usuario nao possuir autorizacao para acesso")
-    public void shouldNotAuthenticateUser() {
-        given()
-                .when()
-                .get("/basicAuth")
-                .then()
-                .assertThat()
-                .statusCode(401);
-    }
+        final RequestSpecification request = new RequestSpecBuilder()
+                .setContentType(ContentType.JSON)
+                .setAccept(ContentType.JSON)
+                .addHeader("Authorization", "JWT " + JWTUtils.getTokenJwt())
+                .setBaseUri("http://barrigarest.wcaquino.me")
+                .build();
 
-    @Test
-    @DisplayName("Deve autenticar-se corretamente usando usuário e senha")
-    public void shouldAuthenticationCorrectlyWithBasicCredentials() {
-        final String user = "admin";
-        final String password = "senha";
+        requestSpecification = request;
 
-        given()
-                .auth()
-                .basic(user, password)
-                .when()
-                .get("/basicAuth")
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .body("status", Matchers.is("logado"));
-
+        get("/reset").then().statusCode(200);
     }
 
     @Test
     @DisplayName("Deve listar todas as contas cadastradas usando JWT como autenticador")
     public void shouldAuthenticateWithJWT() {
-        final String token = JWTUtils.getTokenJwt();
         given()
-                .header("Authorization", "JWT " + token)
                 .when()
-                .get("http://barrigarest.wcaquino.me/contas")
+                .get("/contas")
                 .then()
                 .assertThat()
                 .statusCode(200)
-                .body("$.size()", Matchers.is(3))
-                .body("nome", Matchers.hasItems("Thor", "Captain America", "Iron Man"));
+                .body("$.size()", Matchers.is(6));
+    }
+
+    @Test
+    @DisplayName("Não deve acessar sem token")
+    public void shouldNotAuthenticateWithoutToken() {
+        FilterableRequestSpecification filterable = (FilterableRequestSpecification) requestSpecification;
+        filterable.removeHeader("Authorization");
+
+        given()
+                .when()
+                .get("/contas")
+                .then()
+                .assertThat()
+                .statusCode(401);
     }
 
 }

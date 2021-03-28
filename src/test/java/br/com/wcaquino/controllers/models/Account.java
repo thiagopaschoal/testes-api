@@ -13,12 +13,6 @@ public class Account {
         this.usuario_id = usuario_id;
     }
 
-    public Account(String nome, Boolean visivel, Long usuario_id) {
-        this.nome = nome;
-        this.visivel = visivel;
-        this.usuario_id = usuario_id;
-    }
-
     public Boolean getVisivel() {
         return visivel;
     }
@@ -29,5 +23,9 @@ public class Account {
 
     public String getNome() {
         return nome;
+    }
+
+    public void setVisivel(Boolean visivel) {
+        this.visivel = visivel;
     }
 }
