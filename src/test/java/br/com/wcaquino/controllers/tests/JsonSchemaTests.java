@@ -16,7 +16,7 @@ public class JsonSchemaTests {
     }
 
     @Test
-    @DisplayName("deve validar que o resultado obtido está de acordo com o json schema")
+    @DisplayName("Deve validar que o resultado obtido está de acordo com o json schema")
     public void shouldValidXMLSchema() {
         given()
                 .when()

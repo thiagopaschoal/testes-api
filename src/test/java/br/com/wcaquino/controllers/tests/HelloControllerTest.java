@@ -17,7 +17,7 @@ public class HelloControllerTest {
     }
 
     @Test
-    @DisplayName("deve retorna ola mundo como mensagem no response")
+    @DisplayName("Deve retorna ola mundo como mensagem no response")
     public void shouldReturnOlaMundoAsMessageIntoResponse() {
         given()
                 .when()
@@ -28,7 +28,7 @@ public class HelloControllerTest {
     }
 
     @Test
-    @DisplayName("deve retornar ola mundo como mensagem mas usando outro jeito no Rest Assured")
+    @DisplayName("Deve retornar ola mundo como mensagem mas usando outro jeito no Rest Assured")
     public void shouldReturnOlaMundoAsMessageUsingAnotherWayWithRestAssured() {
         given()
                 .when()

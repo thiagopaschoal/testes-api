@@ -1,33 +1,23 @@
 package br.com.wcaquino.controllers.builders;
 
-import br.com.wcaquino.controllers.models.Address;
 import br.com.wcaquino.controllers.models.User;
 
 public class UserBuilder {
-
     private User user;
-
-    private UserBuilder() {}
+    private UserBuilder(){}
 
     public static UserBuilder oneUser(String name, int age) {
-        UserBuilder userBuilder = new UserBuilder();
-        userBuilder.user = new User(name, age);
-        return userBuilder;
+        UserBuilder builder = new UserBuilder();
+        builder.user = new User(name, age);
+        return builder;
     }
 
-    public UserBuilder withSalary(double salary) {
-        this.user.setSalary(salary);
-        return this;
-    }
-
-    public UserBuilder withAddress(Address address) {
-        this.user.setAddress(address);
+    public UserBuilder withSalary(double param) {
+        user.setSalary(param);
         return this;
     }
 
     public User build() {
         return user;
     }
-
-
 }

@@ -16,7 +16,7 @@ public class UserV2ControllerTest {
     }
 
     @Test
-    @DisplayName("deve retornar um content-type do tipo JSON")
+    @DisplayName("Deve retornar um content-type do tipo JSON")
     public void shouldReturnContetTypeAsJson() {
         given()
                 .when()
@@ -29,7 +29,7 @@ public class UserV2ControllerTest {
     }
 
     @Test
-    @DisplayName("deve retornar um content-type do tipo XML")
+    @DisplayName("Deve retornar um content-type do tipo XML")
     public void shouldReturnContetTypeAsXML() {
         given()
                 .when()
@@ -42,7 +42,7 @@ public class UserV2ControllerTest {
     }
 
     @Test
-    @DisplayName("deve retornar um content-type do tipo HTML quando nenhum formato for definido")
+    @DisplayName("Deve retornar um content-type do tipo HTML quando nenhum formato for definido")
     public void shouldReturnContetTypeAsHTML() {
         given()
                 .when()

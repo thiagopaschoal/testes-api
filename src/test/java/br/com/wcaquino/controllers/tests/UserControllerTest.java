@@ -132,10 +132,10 @@ public class UserControllerTest {
                 .build();
 
         given()
-                .when()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(thiago)
+                .when()
                 .post("/users")
                 .then()
                 .assertThat()
@@ -149,7 +149,8 @@ public class UserControllerTest {
     @DisplayName("nao deve adicionar um usuário sem nome")
     public void shouldNotCreateAnUserWithoutName() {
         final User thiago = UserBuilder
-                .oneUser(null, 0)
+                .oneUser(null, 27)
+                .withSalary(1200D)
                 .build();
 
         given()

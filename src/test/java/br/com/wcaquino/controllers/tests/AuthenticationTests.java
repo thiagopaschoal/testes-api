@@ -1,17 +1,13 @@
 package br.com.wcaquino.controllers.tests;
 
-import static io.restassured.RestAssured.*;
-
-import io.restassured.http.ContentType;
-import org.apache.groovy.util.Maps;
+import br.com.wcaquino.controllers.utils.JWTUtils;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-
 import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
 
 public class AuthenticationTests {
 
@@ -21,7 +17,7 @@ public class AuthenticationTests {
     }
 
     @Test
-    @DisplayName("deve retornar erro quando o usuario nao possuir autorizacao para acesso")
+    @DisplayName("Deve retornar erro quando o usuario nao possuir autorizacao para acesso")
     public void shouldNotAuthenticateUser() {
         given()
                 .when()
@@ -32,7 +28,7 @@ public class AuthenticationTests {
     }
 
     @Test
-    @DisplayName("deve autenticar-se corretamente usando usuário e senha")
+    @DisplayName("Deve autenticar-se corretamente usando usuário e senha")
     public void shouldAuthenticationCorrectlyWithBasicCredentials() {
         final String user = "admin";
         final String password = "senha";
@@ -50,9 +46,9 @@ public class AuthenticationTests {
     }
 
     @Test
-    @DisplayName("deve listar todas as contas cadastradas usando JWT como autenticador")
+    @DisplayName("Deve listar todas as contas cadastradas usando JWT como autenticador")
     public void shouldAuthenticateWithJWT() {
-        final String token = getTokenJwt();
+        final String token = JWTUtils.getTokenJwt();
         given()
                 .header("Authorization", "JWT " + token)
                 .when()
@@ -62,22 +58,6 @@ public class AuthenticationTests {
                 .statusCode(200)
                 .body("$.size()", Matchers.is(3))
                 .body("nome", Matchers.hasItems("Thor", "Captain America", "Iron Man"));
-    }
-
-    private String getTokenJwt() {
-
-        final Map<String, Object> login = Maps.of("email", "thiago@admin.com", "senha", "123456");
-        final String token = given()
-                .body(login)
-                .contentType(ContentType.JSON)
-                .when()
-                .post("http://barrigarest.wcaquino.me/signin")
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .extract()
-                .path("token");
-        return token;
     }
 
 }

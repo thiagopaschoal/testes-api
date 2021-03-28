@@ -20,7 +20,7 @@ public class FileControllerTests {
     }
 
     @Test
-    @DisplayName("nao deve permitir o upload de um arquivo sem nome definido")
+    @DisplayName("Não deve permitir o upload de um arquivo sem nome definido")
     public void shouldNotUploadFileWithoutName() {
         given()
                 .when()
@@ -32,7 +32,7 @@ public class FileControllerTests {
     }
 
     @Test
-    @DisplayName("deve fazer o upload de um arquivo corretamente")
+    @DisplayName("Deve fazer o upload de um arquivo corretamente")
     public void shouldUploadFileCorrectly() {
         given()
                 .when()
@@ -45,7 +45,7 @@ public class FileControllerTests {
     }
 
     @Test
-    @DisplayName("deve fazer o download de um arquivo corretamente")
+    @DisplayName("Deve fazer o download de um arquivo corretamente")
     public void shouldDownloadFileCorrectly() throws IOException {
         byte[] file = given()
                 .when()

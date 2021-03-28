@@ -18,7 +18,7 @@ public class XmlSchemaTests {
     }
 
     @Test
-    @DisplayName("deve validar que o resultado obtido está de acordo com o xsd")
+    @DisplayName("Deve validar que o resultado obtido está de acordo com o xsd")
     public void shouldValidXMLSchema() {
         given()
                 .when()
@@ -30,7 +30,7 @@ public class XmlSchemaTests {
     }
 
     @Test
-    @DisplayName("deve retornar erro quando o registro não estiver de acordo com o schema")
+    @DisplayName("Deve retornar erro quando o registro não estiver de acordo com o schema")
     public void shouldThrowExceptionToInvalidXMLSchema() {
         Assertions.assertThrows(SAXException.class, () -> {
             given()

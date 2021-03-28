@@ -8,7 +8,7 @@
                             <xs:element type="xs:string" name="name"/>
                             <xs:element type="xs:byte" name="age"/>
                             <xs:element type="xs:float" name="salary" minOccurs="0"/>
-                            <xs:element name="endereco" minOccurs="0">
+                            <xs:element name="address" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element type="xs:string" name="rua"/>
@@ -16,7 +16,7 @@
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="filhos" minOccurs="0">
+                            <xs:element name="sons" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element type="xs:string" name="name" maxOccurs="unbounded" minOccurs="0"/>
